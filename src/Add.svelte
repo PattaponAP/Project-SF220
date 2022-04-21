@@ -1,4 +1,9 @@
 <script>
+  let subname = '';
+  let longname = '';
+  let teacher = '';
+  let section = '';
+  let student = 0;
 
 import {islogin, nameAccount, accounts, mode, subject, nameindex} from "./stores.js";
 
@@ -26,6 +31,18 @@ import {islogin, nameAccount, accounts, mode, subject, nameindex} from "./stores
     
   }
 
+  function add() {
+    if (confirm('คุณต้องการเพิ่มรายวิชาใช่หรือไม่')==true) {
+    $subject.push({sub:subname, students: student,status:'', nameSub:longname,teacher:teacher,section:section ,history:[],count:0,});
+    $subject = $subject;
+    subname = '';
+    longname = '';
+    teacher = '';
+    section = '';
+    student = 0;
+    }
+    
+  }
 
 
 </script>
@@ -58,21 +75,31 @@ import {islogin, nameAccount, accounts, mode, subject, nameindex} from "./stores
 </header>
   
  <main>  
-   <div class="head-topic">รายชื่อวิชาโควต้าทั้งหมด</div>
-{#each $subject as {sub, students, status, nameSub, history, section, count, teacher},index}
-
-{#if history != ''} 
-   <div class="subjects-box">
-    <div class="name-sub1">{sub}</div>
-    <div class="name-sub2">{nameSub}</div> 
-    <div class="teacher">ผู้สอน : {teacher}</div>
-    <div class="section">Section: {section}</div>
-    <div class="students">จำนวนนักศึกษาที่ลงทะเบียน {count} คน</div>
-    <button class ='name-students'on:click={()=>show(index)} >แสดงรายชื่อ</button> 
-   </div>
+   <div class="addsubject">
+     <div class="topic">เพิ่มรายวิชาโควต้า</div>
+     <label class='title_subname'>รหัสรายวิชา</label>
+     <input bind:value={subname} type='text' class= 'subname'>
     
- {/if} 
-{/each}
+     
+    
+     <label class='title_longname'>ชื่อรายวิชา</label> 
+      <input bind:value={longname} type='text' class= 'longname'>
+     
+
+     <label class='title_teacher'> ผู้สอน</label> 
+     <input bind:value={teacher} type='text' class= 'teacher'>
+     
+
+      <label class='title_section'>Section</label> 
+     <input bind:value={section} type='text' class= 'section'>
+      
+
+     <label class='title_student'>จำนวนที่นั่ง</label> 
+     <input bind:value={student} type='number' class= 'student'>
+       
+   
+   <button class="add" on:click={add}>เพิ่มรายวิชา</button>
+   </div>
  </main>
 </html>
 
@@ -193,61 +220,105 @@ header {
    text-decoration: none;
    color: black;
  }
-  .head-topic {
-  padding: 13px;
-  text-align: center;
-  font-size: 30px;
-  margin: 18px 0px;
-  width: 27%;
-  color:#717073;
-  font-weight: bold;
-  font-family: kanit;
-}
-  
-  .subjects-box {
-  background-color: #f1f4f6;
-  
-  margin: 20px 60px;
-  height: 65px;
-  font-family: kanit;
-}
-.name-sub1  {
+
+
+.addsubject {
+  background-color: white;
   padding: 20px;
-  float: left;
-  width: 4%;
-}
-.name-sub2 {
-  padding: 20px;
-  float: left;
-  width: 23%;
+  width: 29%;
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
 }
 
-.teacher {
-  padding: 20px;
-  float: left;
-  width: 22%;
-}
 
-  .students {
-  padding: 20px;
-  float: left;
-  width: 20%;
-  }
-  .section {
-  padding: 20px;
-  float: left;
-  width: 12%;
+
+  .topic {
+    font-weight: bold;
+    color:#717073;
+    font-size: 30px;
+    text-align: center;
+    line-height: 65px;
   }
   
-  .name-students {
+.title_subname {
+  padding: 6px;
+  margin-right: 0px;
+  
+  
+}
+.subname {
+  padding: 8px;
+  width: 72%;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+
+.title_longname {
+  padding: 10px;
+  
+}
+  
+.longname {
+  padding: 10px;
+  width: 72%;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+  
+  .title_teacher {
+    margin-right: 28px;
+    padding: 10px;
     
+  }
+
+  .teacher {
+  padding: 10px;
+  width: 72%;
+  margin-bottom: 10px;
+  
+  font-size: 15px;
+  }
+
+  .title_section {
+    margin-right: 13px;
+    padding: 10px;
+   
+  }
+
+  .section {
+    padding: 10px;
+    width: 72%;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  .title_student {
+    margin-right: 0px;
+    padding: 7px;
+   
+  
+  }
+
+  .student {
+    padding: 10px;
+    width: 72%;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  .add {
     background-color: #545454;
-    color: white;
+    color: #ffffff;
     border: none;
     padding: 8px 20px;
-    float: right;
-    margin: 14px;
+    margin: 10px;
+    width: 92%;
     font-family: kanit;
     font-size: 15px;
   }
+
+  
 </style>

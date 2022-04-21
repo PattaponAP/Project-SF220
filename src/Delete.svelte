@@ -1,49 +1,37 @@
 <script>
 
+import {islogin, nameAccount, accounts, mode, subject, nameindex} from "./stores.js";
 
-import {islogin, nameAccount, accounts, mode, subject} from "./stores.js";
-
+ function deletesub(index) {
+   if (confirm('คุณต้องการลบรายวิชาใช่หรือไม่')==true) {
+   $subject.splice(index, 1);
+   $subject = $subject}
+   
+   
+ }
   
-
   function loggout() {
     if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')==true){
       $islogin = false;
     }   
   }
   function main(){
-    $mode = 'main'
+    $mode = 'professor';
   }
-  function enroll() {
-    $mode = 'enroll'
+
+  function cancle() {
+    $mode = 'delete';
     
   }
-   function home() {
-    $mode = 'home'
+  function addsubject() {
+    $mode = 'add'
     
   }
 
-  function change(index) {
-    let newHis = $subject[index].sub;
-    if (confirm('คุณต้องการขอโควต้ารายวิชานี้ใช่หรือไม่')==true){
-        $subject[index].status = true;
-        $subject[index].students -= 1;
-        $subject[index].history.push($nameAccount)
-        $subject[index].count += 1;
-      
-       
-    
-  }
-  }
 
-  
+
 </script>
-
 <html>
-<head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=kanit">
-</head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <header>
 <div>
   <div class="left">
@@ -58,12 +46,11 @@ import {islogin, nameAccount, accounts, mode, subject} from "./stores.js";
   <div class="right">
   <div class="dropdown">
     <button class="dropbtn">{$accounts[$nameAccount].name}</button>
-      <div class="dropdown-content">
-        <a href = '#' on:click={home} class="button">หน้าหลัก</a><br>
-        <a href = '#' on:click={main}  class="button">รายชื่อวิชาโควต้า</a> <br>
-        <a href = '#' on:click={enroll} class="button" >รายชื่อวิชาที่ขอโควต้า</a> <br>
+       <div class="dropdown-content">
+       <a href = '#' on:click={main} class="button">หน้าหลัก</a> <br>
+        <a href = '#' on:click={addsubject} class="button">เพิ่มรายวิชาโควต้า</a> <br>
+        <a href = '#' on:click={cancle} class="button">ลบรายวิชาโควต้า</a> <br>
         <a href = '#' on:click={loggout} class="button">ออกจากระบบ</a>
-         
       </div>
     
   </div>
@@ -72,52 +59,27 @@ import {islogin, nameAccount, accounts, mode, subject} from "./stores.js";
 </div>
 </header>
   
- <main>
-   <div class="head-topic">รายชื่อวิชาโควต้า</div>
-  
-  {#each $subject as {sub, students, teacher, status, nameSub,section},index}
-   
-   {#if !(status)}
-   {#if students > 0}
+ <main>  
+   <div class="head-topic">รายชื่อวิชาโควต้าทั้งหมด</div>
+{#each $subject as {sub, students, status, nameSub, history, section, count, teacher},index}
+
 
    <div class="subjects-box">
     <div class="name-sub1">{sub}</div>
-    <div class="name-sub2">{nameSub}</div>
+    <div class="name-sub2">{nameSub}</div> 
     <div class="teacher">ผู้สอน : {teacher}</div>
     <div class="section">Section: {section}</div>
-    <div class="students">จำนวนที่นั่งคงเหลือ {students} ที่นั่ง</div>
-   <button on:click={()=>change(index)} class="register">ขอโควต้า</button>
+    <div class="students">จำนวนนักศึกษาที่ลงทะเบียน {count} คน</div>
+    <button class ='name-students'on:click={()=>deletesub(index)} >ลบรายวิชา</button> 
+   </div>
     
-    
-    </div>
-   
-   {/if}
-   {/if}
-   
-  
 
-  {/each}
-
-   </main>
+{/each}
+ </main>
 </html>
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <style>
-
- * {
+   * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -134,6 +96,7 @@ html main{
   font-family: kanit;
   letter-spacing: 0.2m;
   font-weight: 400;
+  border-radius: 2px;
   overflow: hidden;
 }
 
@@ -212,7 +175,6 @@ header {
   position: absolute;
   background-color: white;
   min-width: 215px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 10px 15px;
   z-index: 1;
   line-height: 3;
@@ -228,31 +190,35 @@ header {
    color: black;
  }
 
-
-
+ .button {
+   text-decoration: none;
+   color: black;
+ }
   .head-topic {
-  padding: 13px;
+  padding: 10px;
   text-align: center;
   font-size: 30px;
-  margin: 18px 9px;
-  width: 20%;
-  color:#717073;
+  margin: 18px 60px;
+  width: 27%;
+  height: 65px;
   font-weight: bold;
+  color:#717073;
   font-family: kanit;
 }
-
-  
 .subjects-box {
+  
   background-color: #f1f4f6;
   margin: 20px 60px;
   height: 65px;
   font-family: kanit;
+
 }
+  
 .name-sub1  {
   font-weight: bold;
   padding: 20px;
   float: left;
-  width: 8%;
+  width: 6%;
 }
 .name-sub2 {
   padding-top: 20px;
@@ -270,7 +236,7 @@ header {
   .students {
   padding: 20px;
   float: left;
-  width: 17%;
+  width: 20%;
   }
   .section {
   padding: 20px;
@@ -278,9 +244,11 @@ header {
   width: 12%;
   }
   
-  .register {
+  
+  .name-students {
+    
     background-color: #545454;
-    color:#ffffff;
+    color: white;
     border: none;
     padding: 8px 20px;
     float: right;
@@ -288,17 +256,4 @@ header {
     font-family: kanit;
     font-size: 15px;
   }
-  
-  .cousre-outline {
-    background-color: #f1f4f6;
-    border: none;
-    padding: 8px 10px;
-    float: left;
-    margin: 14px;
-    font-family: kanit;
-    font-size: 15px;
-    text-decoration: none;
-    color: black;
-  }
-  
 </style>

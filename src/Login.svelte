@@ -16,7 +16,7 @@
       accountNo = '';
       pin = '';
       if ($accounts[$nameAccount].type == 'student') {
-          $mode = 'main'; }
+          $mode = 'home';}
       else {
           $mode = 'professor';
       }
@@ -65,8 +65,8 @@
 }
 
 html {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 730px;
 }
 
 body {
@@ -74,12 +74,12 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-position: top;
-  background-image: url(https://thestandard.co/wp-content/uploads/2020/08/update3-1.jpg);
+  background-image: url(https://media.discordapp.net/attachments/898856117122256896/965881556864491540/Untitled-2.png?width=1178&height=662);
   width: 100%;
   height: 100%;
   font-family: kanit;
   letter-spacing: 0.2m;
-  font-weight: 400;
+  font-weight: 100;
   
 }
 
@@ -89,9 +89,10 @@ body {
   height: 350px;
   top: calc(50% - 175px);
   left: calc(50% - 125px);
-  background: inherit;
+  background: #ffffff;
   border-radius: 2px;
   overflow: hidden;
+  
   
 }
 
@@ -99,14 +100,14 @@ body {
   content: "";
   width: 300px;
   height: 300px;
-  background: inherit;
+  background: #ffffff;
   position: absolute;
   left: -20px;
   right: 0;
   top: -25px;
   bottom: 0;
-  box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.05);
   filter: blur(10px);
+  
 }
 
 .user-login-box{
@@ -114,6 +115,8 @@ body {
   margin-top: 30px;
   text-align: center;
   z-index: 1;
+  
+  
 }
 
 
@@ -121,29 +124,31 @@ body {
   display: inline-block;
   width: 200px;
   font-family: kanit;
+  
 }
 
 
 .user-icon {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   position: relative;
-  border-radius: 50%;
+  border-radius: 0%;
   background-size: contain;
-  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Emblem_of_Thammasat_University.svg/1200px-Emblem_of_Thammasat_University.svg.png);
+  background-image: url(https://cdn.discordapp.com/attachments/898856117122256896/965537458391494736/01_-.jpg);
 
-  
 }
 
 
 .user-name {
   margin-top: 15px;
   margin-bottom: 15px;
-  color: white;
+  color: #545454;
+  
 }
 
 input.user-username {
   margin-bottom: 4px !important;
+  
   
 }
 
@@ -157,6 +162,7 @@ input.user-username, input.user-password   {
   border: none;
   margin: 0 auto;
   outline: none;
+  border: 1px solid #b3bec8;
   
 }
 
@@ -164,6 +170,8 @@ input.user-username, input.user-password   {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 5px 5px;
+  background:#545454;
+  color:#ffffff
   
 }
   </style>

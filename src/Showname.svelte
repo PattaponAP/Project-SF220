@@ -7,21 +7,40 @@ import {islogin, nameAccount, accounts, mode, subject, nameindex} from "./stores
       $islogin = false;
     }   
   }
-  function main(){
-    $mode = 'professor'
+  function main() {
+    $mode = 'professor';
   }
+
+  function cancle() {
+    $mode = 'delete';
+  }
+  function addsubject() {
+    $mode = 'add'
+    
+  }
+
 
 </script>
 
 <html>
 <header>
 <div>
-  <div class="name">ระบบลงทะเบียนรายวิชาโควต้า</div>
+  <div class="left">
+    <div class="tu">
+    <img  src="https://cdn.discordapp.com/attachments/898856117122256896/965537458391494736/01_-.jpg"width="100"height="100"></div>
+    
+    <div class="name1"><h3>ระบบขอโควต้ารายวิชา</h3></div>
+    <div class="name2"><p style="color:#545454">มหาวิทยาลัยธรรมศาสตร์</p></div>
+  </div>
+
+    
   <div class="right">
   <div class="dropdown">
     <button class="dropbtn">{$accounts[$nameAccount].name}</button>
-      <div class="dropdown-content">
-        <a href = '#' on:click={main} class="button">หน้าหลัก</a> <br>
+       <div class="dropdown-content">
+       <a href = '#' on:click={main} class="button">หน้าหลัก</a> <br>
+        <a href = '#' on:click={addsubject} class="button">เพิ่มรายวิชาโควต้า</a> <br>
+        <a href = '#' on:click={cancle} class="button">ลบรายวิชาโควต้า</a> <br>
         <a href = '#' on:click={loggout} class="button">ออกจากระบบ</a>
       </div>
     
@@ -53,20 +72,20 @@ import {islogin, nameAccount, accounts, mode, subject, nameindex} from "./stores
 
 
 <style>
-   * {
+  * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
+html main{
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-position: top;
-  background-image: url(https://live.staticflickr.com/65535/48759425063_1e7e23fbfe_o_d.jpg);
+  background-color: #DDE5EB;
   width: 100%;
-  height: 725px;
+  height: 1000px;
   font-family: kanit;
   letter-spacing: 0.2m;
   font-weight: 400;
@@ -76,28 +95,57 @@ html {
 
 header {
   width: 100%;
-  height: 120px;
+  height: 100px;
   padding: 1rem 2rem;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 0.25rem;
+  background-color: #ffffff;
+  font-family: kanit;
   }
 
+  .tu {
+    float:left;
+    width: 13%;
+  }
+
+  
   .name {
-    padding: 15px;
+    padding: 0.1px;
+    font-weight: bold;
     padding-left: 30px;
     font-size: 40px;
-    color: black;
+    color: #000000;
     display: block;
     float: left;
+    line-height: 0.6;
   }
+
+  .left {
+    width: 70%;
+    float: left;
+    padding: 15px;
+  }
+
 
   .right {
-    padding: 15px;
-    float: right;
+    width: 30%;
+    padding: 30px;
+    float: left;
     display: block;
   }
-
+  .name1 {
+    font-size: 35px;
+    padding-top: 0px;
+    
+  
+ 
+}
+  .name2 {
+    font-size: 20px;
+    padding-top: 0px;
+    
+  }
+  
 .dropdown {
   position: relative;
   display: inline-block;
@@ -107,8 +155,9 @@ header {
   .dropbtn {
     padding: 10px;
     font-family: kanit;
-    font-size: 20px;
-    background-color: #F8EFD4;
+    font-size: 18px;
+    color: #545454;
+    background-color: #c7d0d8;
     border: none;
   
   }
@@ -133,25 +182,41 @@ header {
    text-decoration: none;
    color: black;
  }
-.head-topic {
-  background-color: white;
-   backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.5);
+
+ .button {
+   text-decoration: none;
+   color: black;
+ }
+  .head-topic {
   padding: 10px;
   text-align: center;
   font-size: 30px;
-  margin: 20px 60px;
-  width: 40%;
+  margin: 18px 60px;
+  width: 27%;
   height: 65px;
+  font-weight: bold;
+  color:#717073;
   font-family: kanit;
 }
+
+
+  .head-topic {
+  padding: 13px;
+  text-align: center;
+  font-size: 30px;
+  margin: 18px 13px;
+  width: 40%;
+  color:#717073;
+  font-weight: bold;
+  font-family: kanit;
+}
+
 .name-box {
   background-color: #E8E8E8;
-   backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 10px;
   text-align: center;
-  margin: 20px 60px;
+  margin: 0px 60px;
   width: 25%;
   float: left;
   height: 50px;

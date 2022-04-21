@@ -17,9 +17,13 @@ import {islogin, nameAccount, accounts, mode, subject} from "./stores.js";
     $mode = 'enroll'
     
   }
+   function home() {
+    $mode = 'home'
+    
+  }
 
   function change(index) {
-    if (confirm('คุณต้องการยกเลิกการลงทะเบียนใช่หรือไม่')==true){
+    if (confirm('คุณต้องการยกเลิกการขอโควต้ารายวิชานี้ใช่หรือไม่')==true){
         $subject[index].status = false;
         $subject[index].students += 1;
         $subject[index].count -= 1;}
@@ -31,17 +35,27 @@ import {islogin, nameAccount, accounts, mode, subject} from "./stores.js";
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<body>
+<html>
 <header>
 <div>
-  <div class="name">ระบบลงทะเบียนรายวิชาโควต้า</div>
+  <div class="left">
+    <div class="tu">
+    <img  src="https://cdn.discordapp.com/attachments/898856117122256896/965537458391494736/01_-.jpg"width="100"height="100"></div>
+    
+    <div class="name1"><h3>ระบบขอโควต้ารายวิชา</h3></div>
+    <div class="name2"><p style="color:#545454">มหาวิทยาลัยธรรมศาสตร์</p></div>
+  </div>
+
+    
   <div class="right">
   <div class="dropdown">
     <button class="dropbtn">{$accounts[$nameAccount].name}</button>
       <div class="dropdown-content">
-        <a href = '#' on:click={main} class="button">หน้าหลัก</a> <br>
-        <a href = '#' on:click={enroll} class="button" >รายชื่อวิชาที่ลงทะเบียน</a> <br>
+        <a href = '#' on:click={home} class="button">หน้าหลัก</a><br>
+        <a href = '#' on:click={main}  class="button">รายชื่อวิชาโควต้า</a> <br>
+        <a href = '#' on:click={enroll} class="button" >รายชื่อวิชาที่ขอโควต้า</a> <br>
         <a href = '#' on:click={loggout} class="button">ออกจากระบบ</a>
+         
       </div>
     
   </div>
@@ -51,6 +65,7 @@ import {islogin, nameAccount, accounts, mode, subject} from "./stores.js";
 </header>
 
 <main>
+   <div class="head-topic">รายชื่อวิชาที่ขอโควต้า</div>
   {#each $subject as {sub, students,teacher,section, status, nameSub},index}
    {#if (status)}
    
@@ -70,7 +85,7 @@ import {islogin, nameAccount, accounts, mode, subject} from "./stores.js";
     
   {/each}
   </main>
-</body>
+</html>
  
 
 <style>
@@ -82,68 +97,93 @@ import {islogin, nameAccount, accounts, mode, subject} from "./stores.js";
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
-  
 }
 
-body {
+html main{
   background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-  background-image: url(https://thestandard.co/wp-content/uploads/2020/08/update3-1.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: top;
+  background-color: #DDE5EB;
   width: 100%;
-  height: 1450px;
+  height: 615px;
   font-family: kanit;
   letter-spacing: 0.2m;
   font-weight: 400;
-  border-radius: 2px;
   overflow: hidden;
 }
 
 header {
   width: 100%;
-  height: 120px;
+  height: 100px;
   padding: 1rem 2rem;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 0.25rem;
+  background-color: #ffffff;
+  font-family: kanit;
   }
 
+  .tu {
+    float:left;
+    width: 13%;
+   
+  }
+
+  
   .name {
-    padding: 15px;
+    padding: 0.1px;
+    font-weight: bold;
     padding-left: 30px;
     font-size: 40px;
-    color: black;
+    color: #000000;
     display: block;
     float: left;
-    font-family: kanit;
+    line-height: 0.6;
   }
+
+  .left {
+    width: 70%;
+    float: left;
+    padding: 15px;
+  }
+
 
   .right {
-    padding: 15px;
-    float: right;
+    width: 30%;
+    padding: 30px;
+    float: left;
     display: block;
-    font-family: kanit;
   }
-
+  .name1 {
+    font-size: 35px;
+    padding-top: 0px;
+    
+  
+ 
+}
+  .name2 {
+    font-size: 20px;
+    padding-top: 0px;
+    
+  }
+  
 .dropdown {
-   position: relative;
+  position: relative;
   display: inline-block;
   float: right;  
 }
 
-.dropbtn {
+  .dropbtn {
     padding: 10px;
     font-family: kanit;
-    font-size: 20px;
-    background-color: #F8EFD4;
+    font-size: 18px;
+    color: #545454;
+    background-color: #c7d0d8;
     border: none;
-  
   
   }
 .dropdown-content {
-   right: 0;
+  right: 0;
   display: none;
   position: absolute;
   background-color: white;
@@ -153,19 +193,30 @@ header {
   z-index: 1;
   line-height: 3;
   
-  
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
-  
-.button {
+
+ .button {
    text-decoration: none;
    color: black;
  }
-  .subjects-box {
-  background-color: #E8E8E8;
+
+ .head-topic {
+  padding: 13px;
+  text-align: center;
+  font-size: 30px;
+  margin: 18px 33px;
+  width: 20%;
+  color:#717073;
+  font-weight: bold;
+  font-family: kanit;
+}
+  
+.subjects-box {
+  background-color: #f1f4f6;
   margin: 20px 60px;
   height: 65px;
   font-family: kanit;
@@ -199,7 +250,7 @@ header {
   }
   
   .cancle {
-    background-color: #FF3300;
+    background-color: #545454;
     color: white;
     border: none;
     padding: 8px 20px;
