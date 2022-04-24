@@ -245,6 +245,7 @@ header {
 .title_subname {
   padding: 6px;
   margin-right: 0px;
+  font-family: kanit;
   
   
 }
@@ -253,11 +254,13 @@ header {
   width: 72%;
   margin-bottom: 10px;
   font-size: 15px;
+  font-family: kanit;
 }
 
 
 .title_longname {
   padding: 10px;
+  font-family: kanit;
   
 }
   
@@ -266,11 +269,13 @@ header {
   width: 72%;
   margin-bottom: 10px;
   font-size: 15px;
+  font-family: kanit;
 }
   
   .title_teacher {
     margin-right: 28px;
     padding: 10px;
+    font-family: kanit;
     
   }
 
@@ -278,13 +283,14 @@ header {
   padding: 10px;
   width: 72%;
   margin-bottom: 10px;
-  
+  font-family: kanit;
   font-size: 15px;
   }
 
   .title_section {
     margin-right: 13px;
     padding: 10px;
+    font-family: kanit;
    
   }
 
@@ -293,11 +299,13 @@ header {
     width: 72%;
     margin-bottom: 10px;
     font-size: 15px;
+    font-family: kanit;
   }
 
   .title_student {
     margin-right: 0px;
     padding: 7px;
+    font-family: kanit;
    
   
   }
@@ -307,6 +315,7 @@ header {
     width: 72%;
     margin-bottom: 10px;
     font-size: 15px;
+    font-family: kanit;
   }
 
   .add {
