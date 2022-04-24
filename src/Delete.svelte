@@ -60,7 +60,7 @@ import {islogin, nameAccount, accounts, mode, subject, nameindex} from "./stores
 </header>
   
  <main>  
-   <div class="head-topic">รายชื่อวิชาโควต้าทั้งหมด</div>
+   <div class="head-topic">ลบรายชื่อวิชาโควต้า</div>
 {#each $subject as {sub, students, status, nameSub, history, section, count, teacher},index}
 
 
@@ -195,14 +195,13 @@ header {
    color: black;
  }
   .head-topic {
-  padding: 10px;
+  padding: 13px;
   text-align: center;
   font-size: 30px;
-  margin: 18px 60px;
-  width: 27%;
-  height: 65px;
-  font-weight: bold;
+  margin: 18px 0px;
+  width: 24%;
   color:#717073;
+  font-weight: bold;
   font-family: kanit;
 }
 .subjects-box {
