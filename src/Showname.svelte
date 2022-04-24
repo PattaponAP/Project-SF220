@@ -55,7 +55,7 @@ import {islogin, nameAccount, accounts, mode, subject, nameindex} from "./stores
   {#each $subject as {sub, students, status, nameSub, history, count},index}
   {#if index == $nameindex}
   
-  <div class="head-topic">รายชื่อนักศึกษาที่ลงทะเบียนรายวิชา {sub}</div>
+  <div class="head-topic">รายชื่อนักศึกษาที่ขอโควต้ารายวิชา {sub}</div>
   
   {#each history as namelist}
     <div class='name-box'>
