@@ -219,7 +219,7 @@ header {
 .name-sub2 {
   padding: 20px;
   float: left;
-  width: 23%;
+  width: 31%;
 }
 
 .teacher {
@@ -232,6 +232,7 @@ header {
   padding: 20px;
   float: left;
   width: 20%;
+  text-align: center;
   }
   .section {
   padding: 20px;
